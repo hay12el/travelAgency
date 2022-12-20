@@ -1,0 +1,91 @@
+.FContainer{
+    width: 70%;
+    height: auto;
+    display: flex;
+    box-shadow: 0px 0px 15px #8888889c;
+}
+.main{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.mainUp{
+    text-align: center;
+    background-color: rgb(243, 243, 243);
+    height: 25px;
+}
+
+.right {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.right > p {
+    margin:4px 0px;
+}
+
+.priceAndBottun{
+    height: 100%;
+    padding: 20px 40px;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #DEEEF5;
+    color: #0A7CAE;
+    font-weight: bold;
+}
+
+#flight {
+    height: 40px;
+    width: 60px;
+}
+
+.middle {
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+}
+
+.hour {
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.fc {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.leftSide{
+    background-color: #ffffff;
+    padding: 5px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+}
+
+.btnF{
+    cursor: pointer;
+    padding: 5px 10px;
+    color: #0A7CAE;
+    width: 50px;
+    font-weight: bold;
+    font-size: 14px;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border-radius: 30px;
+    border: 1px solid #0A7CAE;
+    height: 35px;
+    transition: 0.3s;
+}
+
+.btnF:hover {
+    background-color: white;
+    color: #00A1D6;
+}

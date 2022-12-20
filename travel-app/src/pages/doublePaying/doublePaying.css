@@ -1,0 +1,13 @@
+.doublePayingCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.airplaneContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}

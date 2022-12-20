@@ -1,0 +1,44 @@
+
+  .CCBackground {
+    padding-top: 50px;
+    height: 100%;
+    background: #fff;
+  }
+
+  #lll {
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .outercontainer {
+    margin: 0px auto;
+    border-radius: 3px;
+    box-shadow: 0px 0px 10px #8888889c;
+    width:700px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .formcontainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+  }
+
+  .form-inside {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  
+
+  .text-right {
+    display: flex;
+    justify-content: center;
+    border: none;
+  }
+  

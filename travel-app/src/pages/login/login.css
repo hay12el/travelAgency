@@ -1,0 +1,92 @@
+.lContainer{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+	
+}
+
+.upponLog {
+	border-radius: 5px;
+	box-shadow: 0 0 1em 0.2em rgba(0, 0, 0, 0.082);
+	font-weight: 400;
+	width: 233px;
+	text-align: center;
+	color: rgb(78, 140, 167);
+	background-color: rgba(158, 204, 244, 0.489);;
+}
+
+.inpC{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: space-between;
+    background-color: rgba(178, 219, 255, 0.66);
+    padding: 30px 20px;
+    width: auto;
+    border-radius: 0px 0px 5px 5px;
+    box-shadow: 0 0 1em 0.2em rgba(0, 0, 0, 0.082);
+}
+
+.inp::placeholder{
+    text-align: right;
+}
+
+.confirmBtn{
+    height: 50px;
+    border: none;
+    padding: 10px 20px;
+    background-color: #0071c2;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.inpC .inputBox {
+  position: relative;
+}
+
+.inpC .inputBox input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  letter-spacing: 2px;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+}
+
+.inpC .inputBox label {
+  position: absolute;
+  top: 0;
+  right: 0;
+  letter-spacing: 2px;
+  padding: 10px 0;
+  font-size: 16px;
+  color: rgb(78, 140, 167);
+  pointer-events: none;
+  transition: .35s ease-in-out;
+}
+
+.inpC .inputBox input:focus ~ label,
+.inpC .inputBox input:valid > label {
+  top: -25px;
+  right: 0;
+  color: #03a9f4;
+  font-size: 12px;
+}
+
+.inpC input[type="submit"] {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: rgb(72, 72, 72);
+  background: #03a9f4;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}

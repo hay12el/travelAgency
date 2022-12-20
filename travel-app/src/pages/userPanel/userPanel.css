@@ -1,0 +1,40 @@
+.userCont {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding-bottom: 30px;
+}
+
+.userHeader {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 300px;
+    background-image: url('https://img.freepik.com/free-photo/top-view-tourist-objects-frame-with-copy-space_23-2148786099.jpg?w=1060&t=st=1671381846~exp=1671382446~hmac=b3440d575cb63f054c916cb291e60eef183c5d5633c7fc4e980696e7108eecac');
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 0px 0px 20px 20px;
+}
+
+.helloSec {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: start;
+    width: 100%;
+    padding-left: 50px;
+}
+
+.helloSec > p {
+    margin: 5px 0px;
+}
+
+.userHeader > p {
+    margin-left: 40px;
+    font-size: 70px;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: bolder;
+}

@@ -1,0 +1,19 @@
+#redBtn:hover {
+    background-color: rgb(245, 215, 215);
+    color: rgb(224, 87, 87);
+}
+
+#redBtn {
+    background-color: rgb(255, 62, 62);
+    color: aliceblue;
+    width: auto;
+    height: auto;
+}
+
+.chair {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}

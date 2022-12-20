@@ -1,0 +1,15 @@
+.adminContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0px;
+}
+
+#adminlll {
+    display: flex;
+}
+
+#adminlll .inputBox > input {
+    font-size: large;
+    color: #5B8FA9;
+}
