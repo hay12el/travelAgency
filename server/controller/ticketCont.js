@@ -10,7 +10,7 @@ exports.getAllTickets = async (req, res, next) => {
 //pay attention! seatNumber parameter has to be array of numbers!
 exports.addTicket = async (req, res, next) => {
   try {
-    const { flightId, seatNumber} = req.body;
+    const { flightId, seatNumber } = req.body;
     const userId = req.adminId;
     const flightToUpdate = await Flight.findByIdAndUpdate(
       { _id: flightId },
@@ -38,20 +38,40 @@ exports.addTicket = async (req, res, next) => {
 };
 
 exports.getAllTicketsById = async (req, res, next) => {
-  try{
-    const tickets = await Ticket.aggregate([{$lookup: {
-      from: 'flights',
-      localField: 'flightId',
-      foreignField: '_id',
-      let: {userId: req.adminId},
-      pipeline: [],
-      as: 'flightDetails'
-    }}])
+  try {
+    const tickets = await Ticket.aggregate([
+      {
+        $lookup: {
+          from: "flights",
+          localField: "flightId",
+          foreignField: "_id",
+          let: { userId: req.adminId },
+          pipeline: [],
+          as: "flightDetails",
+        },
+      },
+    ]);
     // console.log(tickets);
     // const tickets = await Ticket.find({userId: req.adminId});
     // res.status(200);
     res.status(200).send(tickets);
-  }catch(err){
+  } catch (err) {
     res.status(404).send(err);
   }
-}
+};
+
+exports.DeleteTicketByUser = async (req, res, next) => {
+  try {
+    const ti = await Ticket.findOneAndDelete({
+      seatNumber: req.params.seatNo,
+      flightId: req.params.flightId
+    });
+    await Flight.findOneAndUpdate(
+      { _id: req.params.flightId },
+      { $push: { seats: req.params.seatNo } }
+    );
+    res.sendStatus(200);
+  } catch (err) {
+    res.send({ msg: err }).status(404);
+  }
+};

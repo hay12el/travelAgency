@@ -2,10 +2,22 @@ import React from "react";
 import airplane from "../../utils/flight.png";
 import "./myFlight.css";
 import { MdChairAlt } from "react-icons/md";
+import axios from "axios";
 
 function MyFlight(props) {
-  const hundleClick = () => {
-    console.log(props.flight._id);
+  const hundleClick = async () => {
+    try {
+      await axios.delete(`http://localhost:${process.env.REACT_APP_URL}/ticket/DeleteTicketByUser/${props.seatNumber}/${props.flight._id}`, {
+        headers: {
+          token: localStorage.getItem("token")
+        }
+      })
+      alert("ticket has deleted");
+      window.location.reload(false);
+    }
+    catch(err) {
+      console.log(err);
+    }
   };
   return (
     <div className="FContainer" id="ttt">

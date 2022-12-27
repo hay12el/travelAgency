@@ -42,7 +42,11 @@ function Home() {
           setC(!c);
           break;
         case 2:
-          setResults(results.sort((x, y) => Date(x.date) - Date(y.date)));
+          setResults(results.sort((x, y) => x.seats.length - y.seats.length));
+          setC(!c);
+          break;
+        case 3:
+          setResults(results.sort((x, y) => x.from.localeCompare(y.from)));
           setC(!c);
           break;
         default:
@@ -51,15 +55,27 @@ function Home() {
     } else {
       switch (x) {
         case 0:
-          setResults(results.sort((x, y) => x[0].price + x[1].price - y[0].price - y[1].price));
+          setResults(
+            results.sort(
+              (x, y) => x[0].price + x[1].price - y[0].price - y[1].price
+            )
+          );
           setC(!c);
           break;
         case 1:
-          setResults(results.sort((x, y) => y[0].price + y[1].price - x[0].price - x[1].price));
+          setResults(
+            results.sort(
+              (x, y) => y[0].price + y[1].price - x[0].price - x[1].price
+            )
+          );
           setC(!c);
           break;
         case 2:
           setResults(results.sort((x, y) => Date(x[0].date) - Date(y[0].date)));
+          setC(!c);
+          break;
+        case 3:
+          setResults(results.sort((x, y) => x[0].from.localeCompare(y[0].from)));
           setC(!c);
           break;
         default:
@@ -79,7 +95,8 @@ function Home() {
       alert("comlete all the parameters!");
     } else {
       const flights = await axios.get(
-        `http://localhost:${process.env.REACT_APP_URL}/flight/${oneOrTwo === 1 ? "getFlights" : "getFlightsTwoWay"
+        `http://localhost:${process.env.REACT_APP_URL}/flight/${
+          oneOrTwo === 1 ? "getFlights" : "getFlightsTwoWay"
         }`,
         {
           params: {
@@ -111,9 +128,11 @@ function Home() {
   };
 
   const handleAllFlights = async () => {
-    const flights = await axios.get(`http://localhost:${process.env.REACT_APP_URL}/flight/`)
-    setResults(flights.data)
-  }
+    const flights = await axios.get(
+      `http://localhost:${process.env.REACT_APP_URL}/flight/`
+    );
+    setResults(flights.data);
+  };
 
   return (
     <>
@@ -247,7 +266,10 @@ function Home() {
           Sort from cheap to expensive
         </button>
         <button className="btn" onClick={() => sortBy(2)}>
-          Sort by date
+          Sort by most Popular
+        </button>
+        <button className="btn" onClick={() => sortBy(3)}>
+          Sort by country
         </button>
       </div>
       <Results flights={results} oneOrTwo={oneOrTwo} change={c} />

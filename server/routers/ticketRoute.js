@@ -11,4 +11,6 @@ router.post('/addTicket', validate.verifyToken ,ticketCon.addTicket);
 
 router.get('/getUsersTicket', validate.verifyToken ,ticketCon.getAllTicketsById);
 
+router.delete('/DeleteTicketByUser/:seatNo/:flightId', validate.verifyToken, ticketCon.DeleteTicketByUser);
+
 module.exports = router;
