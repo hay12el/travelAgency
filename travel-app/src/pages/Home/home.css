@@ -11,6 +11,17 @@
     justify-content: space-between;
   }
 
+  .GetAllFlight{
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 30%;
+  right: 10%;
+  width: 200px;
+  height: 50px;
+  
+}
+
   .sortCont {
 display: flex;
 flex-direction: row;

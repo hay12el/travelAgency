@@ -35,7 +35,7 @@ const NavBar = () => {
         <div className="buttons">
           {user.userName !== "undefined" && user.userName != null ? (
             <>
-              <button className="btn" onClick={()=> !user.isAdmin ? navigate('/adminPanel') : navigate('/userPanel')}>
+              <button className="btn" onClick={()=> user.isAdmin ? navigate('/adminPanel') : navigate('/userPanel')}>
                My Account
               </button>
               <button className="btn" onClick={handleLogout}>

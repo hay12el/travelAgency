@@ -11,7 +11,7 @@ function Home() {
     to: null,
     sTime: new Date(),
     eTime: null,
-    maxPrice: null,
+    maxPrice: 50,
   });
 
   const [fromFlights, setFromFlights] = useState([]);
@@ -31,7 +31,7 @@ function Home() {
   };
 
   const sortBy = (x) => {
-    if(oneOrTwo === 1) {
+    if (oneOrTwo === 1) {
       switch (x) {
         case 0:
           setResults(results.sort((x, y) => x.price - y.price));
@@ -48,14 +48,14 @@ function Home() {
         default:
           console.log("ff");
       }
-    }else{
+    } else {
       switch (x) {
         case 0:
-          setResults(results.sort((x, y) => x[0].price+x[1].price - y[0].price-y[1].price));
+          setResults(results.sort((x, y) => x[0].price + x[1].price - y[0].price - y[1].price));
           setC(!c);
           break;
         case 1:
-          setResults(results.sort((x, y) => y[0].price+y[1].price - x[0].price-x[1].price));
+          setResults(results.sort((x, y) => y[0].price + y[1].price - x[0].price - x[1].price));
           setC(!c);
           break;
         case 2:
@@ -79,8 +79,7 @@ function Home() {
       alert("comlete all the parameters!");
     } else {
       const flights = await axios.get(
-        `http://localhost:${process.env.REACT_APP_URL}/flight/${
-          oneOrTwo === 1 ? "getFlights" : "getFlightsTwoWay"
+        `http://localhost:${process.env.REACT_APP_URL}/flight/${oneOrTwo === 1 ? "getFlights" : "getFlightsTwoWay"
         }`,
         {
           params: {
@@ -101,7 +100,7 @@ function Home() {
         let x = [];
         for (let i = 0; i < toFlights.length; i++) {
           for (let j = 0; j < fromFlights.length; j++) {
-            if(toFlights[i].price + fromFlights[j].price < details.maxPrice) {
+            if (toFlights[i].price + fromFlights[j].price < details.maxPrice) {
               x.push([toFlights[i], fromFlights[j]]);
             }
           }
@@ -111,9 +110,17 @@ function Home() {
     }
   };
 
+  const handleAllFlights = async () => {
+    const flights = await axios.get(`http://localhost:${process.env.REACT_APP_URL}/flight/`)
+    setResults(flights.data)
+  }
+
   return (
     <>
       <div className="HomeContainer">
+        <div className="GetAllFlight">
+          <button onClick={handleAllFlights}>Get All Flight</button>
+        </div>
         <div id="search-form">
           <div id="header">
             <h1>SEARCH FOR CHEAP FLIGHTS</h1>
@@ -145,7 +152,6 @@ function Home() {
                     <label>Two-Way Ticket </label>
                   </div>
                 </div>
-
                 <div id="flight-depart">
                   <div className="info-box">
                     <label>LEAVING FROM</label>
