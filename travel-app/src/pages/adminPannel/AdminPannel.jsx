@@ -141,7 +141,7 @@ function AdminPannel() {
       </div>
       <div className="adminDeleteSection">
         <h1>deleting section:</h1>
-        {results ? results.map((flight) => <FWD flight={flight} key={flight._id}/>) : null}
+        {results ? results.map((flight) => <FWD flight={flight} key={flight._id} setResults={setResults}/>) : null}
       </div>
     </div>
   );

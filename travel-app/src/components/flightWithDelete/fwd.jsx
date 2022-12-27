@@ -1,15 +1,28 @@
-import React from 'react'
+import axios from "axios";
+import React from "react";
 import airplane from "../../utils/flight.png";
 
 function FWD(props) {
-
-    const hundleClick = async () => {
-        console.log(props.flight._id);
+  const hundleClick = async () => {
+    try {
+      const flights = await axios.delete(
+        `http://localhost:${process.env.REACT_APP_URL}/flight/deleteFlight/${props.flight._id}`, {
+            headers: {
+                token: localStorage.getItem("token")
+            }
+        }
+      );
+      alert(`flight from ${props.flight.from} to ${props.flight.to} deleted!`);
+      props.setResults(flights.data.flights);
+    } catch (err) {
+      console.log(err);
     }
+  };
+
   return (
     <div className="FContainer">
       <div className="main">
-        <div className="mainUp">{props.flight.date.split('T')[0]}</div>
+        <div className="mainUp">{props.flight.date.split("T")[0]}</div>
         <div className="mainDown">
           <div className="leftSide">
             <div className="right">
@@ -41,7 +54,7 @@ function FWD(props) {
         </button>
       </div>
     </div>
-  )
+  );
 }
 
-export default FWD
+export default FWD;

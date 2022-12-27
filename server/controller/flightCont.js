@@ -17,10 +17,11 @@ exports.deleteFlightById = async (req, res, next) => {
     if (!del) {
       res.status(404).send({ msg: "didn't find the flight" });
     } else {
-      res.status(200).send({ msg: "success" });
+      const flight = await Flight.find();
+      res.status(200).send({ msg: "success", flights: flight });
     }
   } catch (err) {
-    res.sendStatus(404).send({ msg: "unknown problem" });
+    res.status(404).send({ msg: "unknown problem" });
   }
 };
 
