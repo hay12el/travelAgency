@@ -4,6 +4,7 @@ import "./home.css";
 import coutries from "../../coutries.json";
 import axios from "axios";
 import Results from "../../components/results/Results";
+import Loader from "../../components/loader/Loader";
 
 function Home() {
   const [details, setDetails] = useState({
@@ -14,6 +15,7 @@ function Home() {
     maxPrice: 50,
   });
 
+  const [show, setShow] = useState(false);
   const [fromFlights, setFromFlights] = useState([]);
   const [toFlights, setToFlights] = useState([]);
   const [c, setC] = useState(false);
@@ -23,6 +25,9 @@ function Home() {
   const [oneOrTwo, setOneOrTwo] = useState(1);
 
   const hundleOneOrTwo = (e) => {
+    setResults([]);
+    setFromFlights([]);
+    setToFlights([]);
     setOneOrTwo(e.target.id === "one-way" ? 1 : 0);
   };
 
@@ -75,7 +80,9 @@ function Home() {
           setC(!c);
           break;
         case 3:
-          setResults(results.sort((x, y) => x[0].from.localeCompare(y[0].from)));
+          setResults(
+            results.sort((x, y) => x[0].from.localeCompare(y[0].from))
+          );
           setC(!c);
           break;
         default:
@@ -85,6 +92,7 @@ function Home() {
   };
 
   const hundleSubmit = async () => {
+    setShow(true);
     if (
       details.from === null ||
       details.to === null ||
@@ -125,20 +133,30 @@ function Home() {
         setResults(x);
       }
     }
+    setShow(false);
   };
 
   const handleAllFlights = async () => {
+    setResults([]);
+    setFromFlights([]);
+    setToFlights([]);
+    setShow(true);
     const flights = await axios.get(
       `http://localhost:${process.env.REACT_APP_URL}/flight/`
     );
     setResults(flights.data);
+    setShow(false);
   };
 
   return (
     <>
       <div className="HomeContainer">
+        <Loader show={show} />
         <div className="GetAllFlight">
-          <button onClick={handleAllFlights}>Get All Flight</button>
+          <div className="gaf">
+            <h3>press here to get all our flights</h3>
+          </div>
+          <button className="btn" id="np" onClick={handleAllFlights}>Get All Flight</button>
         </div>
         <div id="search-form">
           <div id="header">

@@ -43,8 +43,8 @@ function AdminPannel() {
       }
       setDetails((prev) => ({ ...prev, ["seats"]: s }));
 
-      resolve("done")
-    })
+      resolve("done");
+    });
 
     const newFlight = await axios.post(
       `http://localhost:5000/flight/addFlight`,
@@ -62,90 +62,105 @@ function AdminPannel() {
         <div className="upponLog">
           <p> add new flight </p>
         </div>
-        <div className="inputBox">
-          <input
-            type="text"
-            name="name"
-            id="from"
-            dir="ltr"
-            onChange={handleCange}
-          />
-          <label>From</label>
+        <div className="col">
+          <div className="right1">
+            <div className="inputBox">
+              <input
+                type="text"
+                name="name"
+                id="from"
+                dir="ltr"
+                onChange={handleCange}
+              />
+              <label>From</label>
+            </div>
+
+            <div className="inputBox">
+              <input
+                type="text"
+                name="to"
+                id="to"
+                dir="ltr"
+                onChange={handleCange}
+              />
+              <label>To</label>
+            </div>
+
+            <div className="inputBox">
+              <input
+                type="date"
+                name="date"
+                id="date"
+                dir="ltr"
+                onChange={handleCange}
+              />
+              <label>Date</label>
+            </div>
+          </div>
+          <div className="right1">
+            <div className="inputBox">
+              <input
+                type="number"
+                name="depHour"
+                id="depHour"
+                dir="ltr"
+                onChange={handleCange}
+              />
+              <label>dept Hour</label>
+            </div>
+
+            <div className="inputBox">
+              <input
+                type="number"
+                name="landHour"
+                dir="ltr"
+                id="landHour"
+                onChange={handleCange}
+              />
+              <label>land Hour</label>
+            </div>
+
+            <div className="inputBox">
+              <input
+                type="number"
+                name="price"
+                dir="ltr"
+                id="price"
+                onChange={handleCange}
+              />
+              <label>price</label>
+            </div>
+          </div>
         </div>
 
-        <div className="inputBox">
-          <input
-            type="text"
-            name="to"
-            id="to"
-            dir="ltr"
-            onChange={handleCange}
-          />
-          <label>To</label>
+        <div className="right1">
+          <div className="inputBox">
+            <input
+              type="number"
+              name="numOfSeats"
+              dir="ltr"
+              id="numOfSeats"
+              onChange={handleCange}
+            />
+            <label>number Of Seats</label>
+          </div>
         </div>
-
-        <div className="inputBox">
-          <input
-            type="date"
-            name="date"
-            id="date"
-            dir="ltr"
-            onChange={handleCange}
-          />
-          <label>Date</label>
-        </div>
-
-        <div className="inputBox">
-          <input
-            type="number"
-            name="depHour"
-            id="depHour"
-            dir="ltr"
-            onChange={handleCange}
-          />
-          <label>dept Hour</label>
-        </div>
-
-        <div className="inputBox">
-          <input
-            type="number"
-            name="landHour"
-            dir="ltr"
-            id="landHour"
-            onChange={handleCange}
-          />
-          <label>land Hour</label>
-        </div>
-
-        <div className="inputBox">
-          <input
-            type="number"
-            name="price"
-            dir="ltr"
-            id="price"
-            onChange={handleCange}
-          />
-          <label>price</label>
-        </div>
-
-        <div className="inputBox">
-          <input
-            type="number"
-            name="numOfSeats"
-            dir="ltr"
-            id="numOfSeats"
-            onChange={handleCange}
-          />
-          <label>number Of Seats</label>
-        </div>
-
-        <button className="confirmBtn" type="submit" onClick={handleSubmit}>
+        <button
+          className="confirmBtn"
+          id="addF"
+          type="submit"
+          onClick={handleSubmit}
+        >
           Add Flight
         </button>
       </div>
       <div className="adminDeleteSection">
         <h1>deleting section:</h1>
-        {results ? results.map((flight) => <FWD flight={flight} key={flight._id} setResults={setResults}/>) : null}
+        {results
+          ? results.map((flight) => (
+              <FWD flight={flight} key={flight._id} setResults={setResults} />
+            ))
+          : null}
       </div>
     </div>
   );

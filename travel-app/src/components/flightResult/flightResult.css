@@ -42,6 +42,13 @@
 #flight {
     height: 40px;
     width: 60px;
+    animation: flyAn 10s ease-in-out infinite;
+    transition: transform 150ms ease;
+}
+
+@keyframes flyAn {
+    50%{transform: translate(20px, -20px)  scale(1) rotate(-10deg);};
+    100%{transform: translate(0, -3px)  scale(1);};
 }
 
 .middle {

@@ -18,7 +18,7 @@ function Airplane({ flight, setChoosenSeats, choosenSeats }) {
   }, []);
 
   function hundleChange(e) {
-    console.log(choosenSeats);
+    console.log(e.target.value);
     choosenSeats.includes(e.target.id)
       ? setChoosenSeats(choosenSeats.filter((item) => item !== e.target.id))
       : setChoosenSeats((prev) => [...prev, e.target.id]);
@@ -63,8 +63,16 @@ function Airplane({ flight, setChoosenSeats, choosenSeats }) {
               </ol>
             </li>
           </ol>
+          
           <input type="checkbox" id="cc" onClick={hundleChange} />
           <div class="exit exit--back fuselage"></div>
+          <select name="ss" id="ss" style={{height: '90px'}} onChange={hundleChange}>
+            {
+              seats.map(x => (
+                <option value={x} id={x}>{x}</option>
+              ))
+            }
+          </select>
         </div>
       )}
     </div>
