@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const User = require('../model/user');
 const userController = require('../controller/userCont');
+const verify = require('../middlewares/verifyToken')
 
 
 const router = Router();
@@ -15,8 +16,11 @@ router.get('/', async (req, res) => {
     })
 })
 
+//update payment
+router.put('/updatePayment',  userController.updatePayment);
+
 //login endPoint
-router.post('/login', userController.Login)
+router.post('/login', userController.Login);
 
 //register endPoint
 router.post('/register', userController.Register);

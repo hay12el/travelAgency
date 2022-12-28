@@ -44,11 +44,14 @@
     width: 60px;
     animation: flyAn 10s ease-in-out infinite;
     transition: transform 150ms ease;
+    
 }
 
 @keyframes flyAn {
-    50%{transform: translate(20px, -20px)  scale(1) rotate(-10deg);};
-    100%{transform: translate(0, -3px)  scale(1);};
+    /* 0%{transform: translate(0px, 0px)  scale(1);opacity: 1; }; */
+    50%{transform: translate(10px, -10px)  scale(1) rotate(-10deg);};
+    70%{transform: translate(15px, -15px)  scale(1);};
+    100%{transform: translate(20px, -20px)  scale(1);};
 }
 
 .middle {

@@ -63,11 +63,16 @@ exports.Login = async (req, res, next) => {
   }
 };
 
-const hash = (pass) => {
-  bcrypt.hash(pass, "saltToChange", function (err, hash) {
-    return hash;
-  });
-};
+exports.updatePayment = async (req,res,next) => {
+  try{
+    const newPayment = await bcrypt.hash(req.body.cc.toString(), 10);
+    const user = await User.findOneAndUpdate({_id: req.adminId}, {CCNumber: newPayment});
+    res.status(200).send("ok");
+  }catch(err) {
+    console.log(err);
+    res.send(err).status(404);
+  }
+}
 
 const randomCC = (x) => {
   var chars = "0123456789";
@@ -79,3 +84,5 @@ const randomCC = (x) => {
    }
    return Number(password);
 }
+
+

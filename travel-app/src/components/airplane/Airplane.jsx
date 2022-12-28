@@ -66,13 +66,13 @@ function Airplane({ flight, setChoosenSeats, choosenSeats }) {
           
           <input type="checkbox" id="cc" onClick={hundleChange} />
           <div class="exit exit--back fuselage"></div>
-          <select name="ss" id="ss" style={{height: '90px'}} onChange={hundleChange}>
+          {/* <select name="ss" id="ss" style={{height: '90px'}} onChange={hundleChange}>
             {
               seats.map(x => (
                 <option value={x} id={x}>{x}</option>
               ))
             }
-          </select>
+          </select> */}
         </div>
       )}
     </div>

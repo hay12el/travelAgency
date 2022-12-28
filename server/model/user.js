@@ -35,7 +35,7 @@ const userSchema = new Schema({
         required: true
     },
     CCNumber:{
-        type: Number,
+        type: String,
         required: false,
         unique: true
     }

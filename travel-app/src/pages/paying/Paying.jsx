@@ -21,7 +21,6 @@ function Paying() {
         { params: { flightId: paramss.id } }
       );
       setFlight(flightF.data);
-      console.log(flightF.data);
     };
     getFlight();
   }, []);
