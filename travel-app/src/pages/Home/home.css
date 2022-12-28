@@ -58,6 +58,7 @@
   align-items: center;
   background-color: #0a7cae;
   padding: 10px 0px;
+  border-radius: 0px 0px 7px 7px;
 }
 
 .sm > p {
@@ -68,7 +69,7 @@
   display: flex;
   justify-content: center;
   padding: 20px 0px;
-  background-image: url("https://as1.ftcdn.net/v2/jpg/02/54/76/30/1000_F_254763087_qAqKHN1286EPaCTqfG8lWjIJ6CT2SAM8.jpg");
+  background-image: url("https://img.freepik.com/premium-photo/tropical-island-maldives_255175-1314.jpg?w=1800");
   background-repeat: no-repeat;
   background-size: cover;
 }

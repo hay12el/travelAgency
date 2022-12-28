@@ -1,7 +1,7 @@
 .plane {
     margin: 20px 50px;
     max-width: 350px;
-
+  width: 500px;
   }
   
   .cockpit {
@@ -246,4 +246,16 @@
     justify-content: center;
     align-items: center;
     margin-right: 20px;
+  }
+
+  .helloSec1 > h3 {
+    margin: 0;
+  }
+
+  .helloSec1 {
+    width: 40%;
+    background-color: rgba(214, 214, 214, 0.572);
+    border-radius: 10px;
+    margin: auto;
+    padding: 0px 0px 10px 10px;
   }
