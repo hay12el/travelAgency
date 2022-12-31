@@ -5,25 +5,16 @@ import { useEffect } from "react";
 import Airplane from "../../components/airplane/Airplane";
 import axios from "axios";
 import Payment from "../../components/payment/Payment";
+import { useSelector } from "react-redux";
 
 function DoublePaying() {
+  const user = useSelector((state) => state.user);
   const params = useParams();
   const [flight1, setFlight1] = useState({});
   const [choosenSeats1, setChoosenSeats1] = useState([]);
   const [flight2, setFlight2] = useState({});
   const [choosenSeats2, setChoosenSeats2] = useState([]);
 
-  const changeHandle = (e) => {
-    if (e.target.name === "f1") {
-      choosenSeats1.includes(e.target.id)
-        ? setChoosenSeats1(choosenSeats1.filter((x) => x !== e.target.id))
-        : setChoosenSeats1((prev) => [...prev, e.target.id]);
-    } else {
-      choosenSeats2.includes(e.target.id)
-        ? setChoosenSeats2(choosenSeats2.filter((x) => x !== e.target.id))
-        : setChoosenSeats2((prev) => [...prev, e.target.id]);
-    }
-  };
   useEffect(() => {
     const getFlight = async () => {
       const flightF = await axios.get(
@@ -42,56 +33,41 @@ function DoublePaying() {
 
   return (
     <div className="doublePayingCont">
+      <div className="userHeader">
+        <p>Booking Tickets</p>
+      </div>
+      <div className="helloSec1">
+        <h1>Hi {user.userName},</h1>
+        <h3>Here you can book your tickets.</h3>
+        <h3>choose seats and pay.</h3>
+        <h3>Enjoy your journy 🛫😎</h3>
+      </div>
+
       <div className="airplaneContainer">
-        {/* {Object.keys(flight1).length !== 0 && (
-          <select name="f1" id="f1" onChange={changeHandle}>
-            {flight1.seats.map((x) => (
-              <option key={x + flight1._id}>{x}</option>
-            ))}
-          </select>
-        )} */}
-        <div className="ssee">
-          <h2>
-            from {flight1.from} to {flight1.to}
-          </h2>
-          {Object.keys(flight1).length !== 0 && (
-            <div className="air">
-              {flight1.seats.map((x) => (
-                <label key={x + flight1._id + "1"}>
-                  <input
-                    type="checkbox"
-                    key={x + flight1._id}
-                    onChange={changeHandle}
-                    id={x}
-                    name="f1"
-                  />
-                  {x}
-                </label>
-              ))}
-            </div>
-          )}
+        <>
+          {Object.keys(flight1).length !== 0 ? (
+            <Airplane
+              flight={flight1}
+              choosenSeats={choosenSeats1}
+              setChoosenSeats={setChoosenSeats1}
+            />
+          ) : null}
+        </>
+        <div className="jjj">
+          <h1>outbound flight</h1>
+        <h1>{"<-------------"}</h1>
+          <h1>return flight</h1>
+        <h1>{"------------->"}</h1>
         </div>
-        <div className="ssee">
-          <h2>
-            from {flight2.from} to {flight2.to}
-          </h2>
-          {Object.keys(flight2).length !== 0 && (
-            <div className="air">
-              {flight2.seats.map((x) => (
-                <label key={x + flight2._id + "2"}>
-                  <input
-                    type="checkbox"
-                    key={x + flight2._id}
-                    onChange={changeHandle}
-                    id={x}
-                    name="f2"
-                  />
-                  {x}
-                </label>
-              ))}
-            </div>
-          )}
-        </div>
+        <>
+          {Object.keys(flight2).length !== 0 ? (
+            <Airplane
+              flight={flight2}
+              choosenSeats={choosenSeats2}
+              setChoosenSeats={setChoosenSeats2}
+            />
+          ) : null}
+        </>
       </div>
       <div className="boxe">
         <div className="totalContainer">

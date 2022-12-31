@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import airplane from "../../utils/flight.png";
 
 function Airplane({ flight, setChoosenSeats, choosenSeats }) {
   const [seats, setSeats] = useState([]);
@@ -18,7 +19,6 @@ function Airplane({ flight, setChoosenSeats, choosenSeats }) {
   }, []);
 
   function hundleChange(e) {
-    console.log(e.target.value);
     choosenSeats.includes(e.target.id)
       ? setChoosenSeats(choosenSeats.filter((item) => item !== e.target.id))
       : setChoosenSeats((prev) => [...prev, e.target.id]);
@@ -31,7 +31,16 @@ function Airplane({ flight, setChoosenSeats, choosenSeats }) {
       ) : (
         <div className={"plane"}>
           <div className={"cockpit"}>
-            <h1>Boing 999</h1>
+            <img src={airplane} alt="fly" id="flight" />
+            <h1>
+              from {flight.from} to {flight.to}
+            </h1>
+            <h4>
+              {flight.date.split("T")[0]}
+            </h4>
+            <h4>
+              {flight.depHour}:00 - {flight.landHour}:00
+            </h4>
           </div>
           <div class="exit exit--front fuselage"></div>
           <ol class="cabin fuselage">
@@ -43,10 +52,15 @@ function Airplane({ flight, setChoosenSeats, choosenSeats }) {
                       <input
                         type="checkbox"
                         key={"ch" + x + flight._id}
-                        id={x}
+                        id={x + flight._id}
                         onClick={hundleChange}
                       />
-                      <label htmlFor={x} key={"la" + x + flight._id}>{x}</label>
+                      <label
+                        htmlFor={x + flight._id}
+                        key={"la" + x + flight._id}
+                      >
+                        {x}
+                      </label>
                     </li>
                   ) : (
                     <li class="seat" key={"" + x + flight._id}>
@@ -56,23 +70,14 @@ function Airplane({ flight, setChoosenSeats, choosenSeats }) {
                         disabled
                         onClick={hundleChange}
                       />
-                      <label htmlFor={x} >{x}</label>
+                      <label htmlFor={x}>{x}</label>
                     </li>
                   )
                 )}
               </ol>
             </li>
           </ol>
-          
-          <input type="checkbox" id="cc" onClick={hundleChange} />
           <div class="exit exit--back fuselage"></div>
-          {/* <select name="ss" id="ss" style={{height: '90px'}} onChange={hundleChange}>
-            {
-              seats.map(x => (
-                <option value={x} id={x}>{x}</option>
-              ))
-            }
-          </select> */}
         </div>
       )}
     </div>
