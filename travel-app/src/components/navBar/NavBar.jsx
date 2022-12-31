@@ -10,8 +10,6 @@ const NavBar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  console.log(user.isAdmin);
-
   const handleLogout = () => {
     localStorage.clear();
     dispatch(LOGOUT());
@@ -35,7 +33,8 @@ const NavBar = () => {
         <div className="buttons">
           {user.userName !== "undefined" && user.userName != null ? (
             <>
-              <button className="btn" onClick={()=> user.isAdmin ? navigate('/adminPanel') : navigate('/userPanel')}>
+              {/* <button className="btn" onClick={()=>console.log(user.isAdmin)}> */}
+              <button className="btn" onClick={()=> user.isAdmin === 'true' ? navigate('/adminPanel') : navigate('/userPanel')}>
                My Account
               </button>
               <button className="btn" onClick={handleLogout}>

@@ -2,7 +2,7 @@ import axios from "axios";
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Loader from '../loader/Loader'
+import Loader from "../loader/Loader";
 import "./payment.css";
 
 function Payment(props) {
@@ -27,24 +27,49 @@ function Payment(props) {
         { headers: { token: localStorage.getItem("token") } }
       );
     }
-    setShow(true)
-    const tickets = await axios.post(
-      `http://localhost:${process.env.REACT_APP_URL}/ticket/addTicket`,
-      { flightId: props.flight._id, seatNumber: props.seats},
-      {headers:
-      {'token': localStorage.getItem('token')}}
-    )
-    if(tickets){
-      setShow(false);
-      alert("The order was successfully placed")
-      navigate('/');
+    setShow(true);
+    if (typeof props.flight === "object") {
+      if (props.seats.length == 0) {
+        alert("please choose seats");
+      } else {
+        const tickets = await axios.post(
+          `http://localhost:${process.env.REACT_APP_URL}/ticket/addTicket`,
+          { flightId: props.flight._id, seatNumber: props.seats },
+          { headers: { token: localStorage.getItem("token") } }
+        );
+        if (tickets) {
+          setShow(false);
+          alert("The order was successfully placed");
+          navigate("/");
+        }
+      }
+    } else {
+      if (props.seats1.length == 0 || props.seats2.length == 0) {
+        alert("please select seats");
+      } else {
+        const tickets1 = await axios.post(
+          `http://localhost:${process.env.REACT_APP_URL}/ticket/addTicket`,
+          { flightId: props.flight1._id, seatNumber: props.seats1 },
+          { headers: { token: localStorage.getItem("token") } }
+        );
+        const tickets2 = await axios.post(
+          `http://localhost:${process.env.REACT_APP_URL}/ticket/addTicket`,
+          { flightId: props.flight2._id, seatNumber: props.seats2 },
+          { headers: { token: localStorage.getItem("token") } }
+        );
+        if (tickets1 && tickets2) {
+          setShow(false);
+          alert("The order was successfully placed");
+          navigate("/");
+        }
+      }
     }
     setShow(false);
   };
 
   return (
     <div className="outercontainer">
-      <Loader show={show}/>
+      <Loader show={show} />
       <div className="inpC" id="lll">
         <div className="upponLog">
           <p>PAYMENT</p>

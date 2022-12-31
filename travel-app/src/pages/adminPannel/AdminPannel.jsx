@@ -4,8 +4,12 @@ import { useState } from "react";
 import "./adminPannel.css";
 import { useEffect } from "react";
 import FWD from "../../components/flightWithDelete/fwd";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 function AdminPannel() {
+  const user = useSelector(state => state.user)
+  const navigate = useNavigate()
   const [details, setDetails] = useState({
     to: null,
     from: null,
@@ -20,15 +24,19 @@ function AdminPannel() {
   const [results, setResults] = useState([]);
 
   useEffect(() => {
-    const getData = async () => {
-      const flights = await axios.get(
-        `http://localhost:${process.env.REACT_APP_URL}/flight/`
-      );
-      setResults(flights.data);
-      console.log(flights.data);
-    };
-
-    getData();
+    if(user.isAdmin === 'false'){
+      console.log("not admin");
+      navigate('/userPanel')
+    }else{
+      const getData = async () => {
+        const flights = await axios.get(
+          `http://localhost:${process.env.REACT_APP_URL}/flight/`
+        );
+        setResults(flights.data);
+      };
+  
+      getData();
+    }
   }, []);
 
   const handleCange = (e) => {

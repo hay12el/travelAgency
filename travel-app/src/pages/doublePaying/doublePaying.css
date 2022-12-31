@@ -7,7 +7,29 @@
 .airplaneContainer{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
+    gap: 30px;
+    height: auto;
+    justify-content:space-around;
+    align-items: flex-start;
     width: 100%;
+}
+
+.airplaneContainer > select {
+    height: 120px;
+}
+
+.air {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.ssee {
+    display: flex;
+    height:100%;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 40%;
 }
