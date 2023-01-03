@@ -2,7 +2,7 @@ import axios from "axios";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./paying.css";
 import Payment from "../../components/payment/Payment";
 import Airplane from "../../components/airplane/Airplane";
@@ -13,8 +13,12 @@ function Paying() {
   const [flight, setFlight] = useState({});
   const [choosenSeats, setChoosenSeats] = useState([]);
   const user = useSelector((state) => state.user);
+  const navigate = useNavigate()
 
   useEffect(() => {
+    if(user.token === undefined) {
+      navigate('/login')
+    }
     const getFlight = async () => {
       const flightF = await axios.get(
         `http://localhost:${process.env.REACT_APP_URL}/flight/getFlightById`,

@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { useEffect } from "react";
 
 const initialState = {
   token: localStorage.getItem("token") || undefined,
@@ -25,8 +26,6 @@ export const userSlice = createSlice({
     },
   },
 });
-
-
 
 // Action creators are generated for each case reducer function
 export const { LOGIN, LOGOUT } = userSlice.actions;

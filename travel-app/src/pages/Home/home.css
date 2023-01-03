@@ -51,7 +51,7 @@
 .sortCont {
   display:flex;
   position: sticky;
-  top: 50px;
+  top: 0;
   z-index: 1;
   flex-direction: row;
   justify-content: center;

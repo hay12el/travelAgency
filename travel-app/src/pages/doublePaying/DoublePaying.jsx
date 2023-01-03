@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./doublePaying.css";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import Airplane from "../../components/airplane/Airplane";
 import axios from "axios";
@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 
 function DoublePaying() {
   const user = useSelector((state) => state.user);
+  const navigate = useNavigate();
   const params = useParams();
   const [flight1, setFlight1] = useState({});
   const [choosenSeats1, setChoosenSeats1] = useState([]);
@@ -16,6 +17,10 @@ function DoublePaying() {
   const [choosenSeats2, setChoosenSeats2] = useState([]);
 
   useEffect(() => {
+    if(user.token === undefined) {
+      alert("please login before add tickets")
+      navigate('/login')
+    }
     const getFlight = async () => {
       const flightF = await axios.get(
         `http://localhost:${process.env.REACT_APP_URL}/flight/getFlightById`,

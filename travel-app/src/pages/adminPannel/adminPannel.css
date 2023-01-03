@@ -3,16 +3,23 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 10px 0px;
+    margin: 0px 0px 10px 0px;
 }
 
-#adminlll {
+.adminlll {
+    width: 80%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: space-between;
     align-items: center;
+    background-color: rgb(255, 255, 255);
+    padding: 30px 20px;
+    width: auto;
+    border-radius: 0px 10px 10px 10px;
 }
 
-#adminlll .inputBox > input {
+.adminlll .inputBox > input {
     font-size: large;
     color: #5B8FA9;
 }
@@ -23,7 +30,6 @@
 
 .adminDeleteSection{
     background-color: rgb(244, 244, 244);
-    margin: 30px 0px 0px 0px;
     padding-bottom: 30px;
     display: flex;
     align-items: center;
@@ -31,6 +37,15 @@
     flex-direction: column;
     gap: 10px;
     width: 100%;
+}
+
+.ff {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0px 50px 0px;
+    width: 100%;
+    background: linear-gradient(#adedff,#fbfbfb);
 }
 
 .col {
@@ -48,3 +63,51 @@
 #addF {
     width: 300px;
 }
+
+.adminlll .inputBox {
+    position: relative;
+  }
+  
+  .adminlll .inputBox input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: rgb(116, 115, 115);
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+  }
+  
+  .adminlll .inputBox label {
+    position: absolute;
+    top: 0;
+    right: 0;
+    letter-spacing: 2px;
+    padding: 10px 0;
+    font-size: 16px;
+    color: rgb(78, 140, 167);
+    pointer-events: none;
+    transition: .35s ease-in-out;
+  }
+  
+  .adminlll .inputBox input:focus ~ label,
+  .adminlll .inputBox input:valid > label {
+    top: -25px;
+    right: 0;
+    color: #03a9f4;
+    font-size: 12px;
+  }
+  
+  .adminlll input[type="submit"] {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: rgb(72, 72, 72);
+    background: #03a9f4;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+  }

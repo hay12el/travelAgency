@@ -1,10 +1,28 @@
-.lContainer{
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-	
+.containerBig {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  background: linear-gradient(#adedff,#fbfbfb);
+}
+
+.vv{
+ display: flex;
+ flex-direction: row;
+ width: 70%;
+ height: 70%;
+ box-shadow: 0px 0px 15px #8888889c;
+ border-radius: 10px;
+}
+
+.leftImg{
+  display: flex;
+  flex: 1;
+  background-image: url("https://img.freepik.com/free-photo/beautiful-tropical-beach-sea-with-chair-blue-sky_74190-7488.jpg?w=1480&t=st=1672688036~exp=1672688636~hmac=78642877cd79bddd17ddf9e92b89f37ceafd19446031b2723ec2274e5b8dbe5d");
+  background-size: cover;
+  border-radius: 10px 0px 0px 10px;
 }
 
 .upponLog {
@@ -21,13 +39,14 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    flex: 1;
     justify-content: space-between;
-    align-items: space-between;
-    background-color: rgba(178, 219, 255, 0.66);
+    align-items: center;
+    background-color: rgb(255, 255, 255);
     padding: 30px 20px;
     width: auto;
-    border-radius: 0px 0px 5px 5px;
-    box-shadow: 0 0 1em 0.2em rgba(0, 0, 0, 0.082);
+    border-radius: 0px 10px 10px 10px;
+    /* box-shadow: 0 0 1em 0.2em rgba(0, 0, 0, 0.082); */
 }
 
 .inp::placeholder{
@@ -51,7 +70,7 @@
   width: 100%;
   padding: 10px 0;
   font-size: 16px;
-  color: #fff;
+  color: rgb(116, 115, 115);
   letter-spacing: 2px;
   margin-bottom: 30px;
   border: none;

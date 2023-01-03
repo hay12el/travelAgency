@@ -19,9 +19,9 @@ function Airplane({ flight, setChoosenSeats, choosenSeats }) {
   }, []);
 
   function hundleChange(e) {
-    choosenSeats.includes(e.target.id)
-      ? setChoosenSeats(choosenSeats.filter((item) => item !== e.target.id))
-      : setChoosenSeats((prev) => [...prev, e.target.id]);
+    choosenSeats.includes(e.target.name)
+      ? setChoosenSeats(choosenSeats.filter((item) => item !== e.target.name))
+      : setChoosenSeats((prev) => [...prev, e.target.name]);
   }
 
   return (
@@ -53,6 +53,7 @@ function Airplane({ flight, setChoosenSeats, choosenSeats }) {
                         type="checkbox"
                         key={"ch" + x + flight._id}
                         id={x + flight._id}
+                        name={x}
                         onClick={hundleChange}
                       />
                       <label

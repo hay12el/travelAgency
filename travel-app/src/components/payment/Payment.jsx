@@ -40,7 +40,7 @@ function Payment(props) {
         if (tickets) {
           setShow(false);
           alert("The order was successfully placed");
-          navigate("/");
+          navigate("/userPanel");
         }
       }
     } else {
@@ -60,7 +60,7 @@ function Payment(props) {
         if (tickets1 && tickets2) {
           setShow(false);
           alert("The order was successfully placed");
-          navigate("/");
+          navigate("/userPanel");
         }
       }
     }

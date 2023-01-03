@@ -38,24 +38,26 @@ const Login = () => {
   };
 
   const handleSubmit = async () => {
-
     try {
       const res = await axios.post(
         `http://localhost:${process.env.REACT_APP_URL}/user/login`,
         {
           email: inputs.email,
-          password: inputs.password
-        },
+          password: inputs.password,
+        }
       );
       localStorage.setItem("token", res.data.token);
-      localStorage.setItem("userName", res.data.user.fName + ' ' + res.data.user.lName);
+      localStorage.setItem(
+        "userName",
+        res.data.user.fName + " " + res.data.user.lName
+      );
       localStorage.setItem("isAdmin", res.data.user.isAdmin);
       const redux_promiss = () => {
         return new Promise((resolve) => {
           dispatch(
             LOGIN({
               isAdmin: res.data.user.isAdmin,
-              userName: res.data.user.fName + ' ' + res.data.user.lName,
+              userName: res.data.user.fName + " " + res.data.user.lName,
               token: res.data.token,
             })
           );
@@ -70,34 +72,39 @@ const Login = () => {
   };
 
   return (
-    <div className="lContainer">
-      <div className="inpC">
-        <div className="upponLog">
-          <p>התחברות</p>
+    <div className="containerBig">
+      <div className="vv">
+        <div className="leftImg">
+          
         </div>
-        <div className="inputBox">
-          <input
-            type="email"
-            // className="inp"
-            id="email"
-            onChange={handleChange}
-            onKeyDown={handleClick}
-          />
-          <label>מייל</label>
+        <div className="inpC">
+          <div className="upponLog">
+            <p>התחברות</p>
+          </div>
+          <div className="inputBox">
+            <input
+              type="email"
+              // className="inp"
+              id="email"
+              onChange={handleChange}
+              onKeyDown={handleClick}
+            />
+            <label>מייל</label>
+          </div>
+          <div className="inputBox">
+            <input
+              type="password"
+              // className="inp"
+              id="password"
+              onChange={handleChange}
+              onKeyDown={handleClick}
+            />
+            <label>סיסמא</label>
+          </div>
+          <button type="submit" className="confirmBtn" onClick={handleSubmit}>
+            התחבר
+          </button>
         </div>
-        <div className="inputBox">
-          <input
-            type="password"
-            // className="inp"
-            id="password"
-            onChange={handleChange}
-            onKeyDown={handleClick}
-          />
-          <label>סיסמא</label>
-        </div>
-        <button type="submit" className="confirmBtn" onClick={handleSubmit}>
-          התחבר
-        </button>
       </div>
     </div>
   );
