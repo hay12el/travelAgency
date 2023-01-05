@@ -6,6 +6,15 @@
     margin: 20px;
 }
 
+#Sin{
+    height: auto;
+}
+
+#Sin1{
+    height: auto;
+    padding: 50px 0px;
+}
+
 .inpContainer{
     padding: 20px;
     background-color: rgb(247, 247, 247);

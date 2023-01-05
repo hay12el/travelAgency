@@ -81,13 +81,16 @@ const Signin = () => {
       bDate: null,
       confirmPassword: null,
     });
-  
+
     await validationSchema
       .validate(details, { abortEarly: false })
       .then(async () => {
         try {
           await axios
-            .post(`http://localhost:${process.env.REACT_APP_URL}/user/register`, details)
+            .post(
+              `http://localhost:${process.env.REACT_APP_URL}/user/register`,
+              details
+            )
             .then(async (res) => {
               localStorage.setItem("token", res.data.token);
               localStorage.setItem("userName", res.data.user.userName);
@@ -97,7 +100,7 @@ const Signin = () => {
                   dispatch(
                     LOGIN({
                       isAdmin: res.data.user.isAdmin,
-                      userName: res.data.user.fName + ' ' + res.data.user.lName,
+                      userName: res.data.user.fName + " " + res.data.user.lName,
                       token: res.data.token,
                     })
                   );
@@ -122,67 +125,75 @@ const Signin = () => {
   };
 
   return (
-    <div className="sContainer">
-      <div className="inpC">
-        <div className="upponLog">
-          <p>הרשמה ראשונית</p>
-        </div>
-        <div className="inputBox">
-          <input
-            type="text"
-            name="name"
-            id="userName"
-            dir="rtl"
-            onChange={handleCange}
-          />
-          <label>שם מלא</label>
-        </div>
+    <div className="containerBig" id="Sin1">
+      <div className="vv" id="Sin">
+        <div className="leftImg"></div>
+        <div className="inpC">
+          <div className="upponLog">
+            <p>הרשמה ראשונית</p>
+          </div>
+          <div className="inputBox">
+            <input
+              type="text"
+              name="name"
+              id="userName"
+              dir="rtl"
+              onChange={handleCange}
+            />
+            <label>שם מלא</label>
+          </div>
 
-        {errors.userName !== null && <p>{errors.userName}</p>}
-        <div className="inputBox">
-          <input type="email" name="email" id="email" onChange={handleCange} />
-          <label>אימייל</label>
-        </div>
+          {errors.userName !== null && <p>{errors.userName}</p>}
+          <div className="inputBox">
+            <input
+              type="email"
+              name="email"
+              id="email"
+              onChange={handleCange}
+            />
+            <label>אימייל</label>
+          </div>
 
-        {errors.email !== null && <p>{errors.bDate}</p>}
-        <div className="inputBox">
-          <input type="date" name="bDate" id="bDate" onChange={handleCange} />
-          <label>תאריך לידה</label>
-        </div>
+          {errors.email !== null && <p>{errors.bDate}</p>}
+          <div className="inputBox">
+            <input type="date" name="bDate" id="bDate" onChange={handleCange} />
+            <label>תאריך לידה</label>
+          </div>
 
-        {errors.email !== null && <p>{errors.email}</p>}
-        <div className="inputBox">
-          <input type="tel" name="phone" id="phone" onChange={handleCange} />
-          <label>מס' טלפון</label>
-        </div>
+          {errors.email !== null && <p>{errors.email}</p>}
+          <div className="inputBox">
+            <input type="tel" name="phone" id="phone" onChange={handleCange} />
+            <label>מס' טלפון</label>
+          </div>
 
-        {errors.phone !== null && <p>{errors.phone}</p>}
-        <div className="inputBox">
-          <input
-            type="password"
-            name="password"
-            id="password"
-            dir="rtl"
-            onChange={handleCange}
-          />
-          <label>סיסמא</label>
-        </div>
+          {errors.phone !== null && <p>{errors.phone}</p>}
+          <div className="inputBox">
+            <input
+              type="password"
+              name="password"
+              id="password"
+              dir="rtl"
+              onChange={handleCange}
+            />
+            <label>סיסמא</label>
+          </div>
 
-        {errors.password !== null && <p>{errors.password}</p>}
-        <div className="inputBox">
-          <input
-            type="password"
-            name="confirmPassword"
-            dir="rtl"
-            id="confirmPassword"
-            onChange={handleCange}
-          />
-          <label>אישור סיסמא</label>
+          {errors.password !== null && <p>{errors.password}</p>}
+          <div className="inputBox">
+            <input
+              type="password"
+              name="confirmPassword"
+              dir="rtl"
+              id="confirmPassword"
+              onChange={handleCange}
+            />
+            <label>אישור סיסמא</label>
+          </div>
+          {errors.confirmPassword !== null && <p>{errors.confirmPassword}</p>}
+          <button className="confirmBtn" type="submit" onClick={handleSubmit}>
+            הירשם
+          </button>
         </div>
-        {errors.confirmPassword !== null && <p>{errors.confirmPassword}</p>}
-        <button className="confirmBtn" type="submit" onClick={handleSubmit}>
-          הירשם
-        </button>
       </div>
     </div>
   );

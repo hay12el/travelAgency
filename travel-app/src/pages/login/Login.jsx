@@ -74,9 +74,7 @@ const Login = () => {
   return (
     <div className="containerBig">
       <div className="vv">
-        <div className="leftImg">
-          
-        </div>
+        <div className="leftImg"></div>
         <div className="inpC">
           <div className="upponLog">
             <p>התחברות</p>
