@@ -13,13 +13,14 @@ function Payment(props) {
     CardNumber: null,
     FullName: null,
     date: null,
+    IDnum: null
   });
 
   const handleChange = (e) => {
     setDetails((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
 
-  function validateCreditCard(cvc, number, name, expDate) {
+  function validateCreditCard(cvc, number, name, expDate, IDnum) {
     // Check CVC
     if (/^\d{3,4}$/.test(cvc) === false) {
       return false;
@@ -27,6 +28,10 @@ function Payment(props) {
 
     // Check credit card number
     if (/^\d{16}$/.test(number) === false) {
+      return false;
+    }
+    
+    if (/^\d{9}$/.test(IDnum) === false) {
       return false;
     }
 
@@ -50,7 +55,8 @@ function Payment(props) {
       details.CVC,
       details.CardNumber,
       details.FullName,
-      details.date
+      details.date,
+      details.IDnum
     );
     if (isValid) {
       if (
@@ -142,10 +148,19 @@ function Payment(props) {
               />
               <label>Full Name</label>
             </div>
+            <div className="inputBox">
+              <input
+                type="text"
+                id="IDnum"
+                onChange={handleChange}
+                // onKeyDown={handleClick}
+              />
+              <label>ID</label>
+            </div>
           </div>
         </div>
         <div className="text-right purchasebtn">
-          <button className="btn" onClick={hundleClick}>
+          <button className="btn" id="btnP" onClick={hundleClick}>
             Purchase
           </button>
         </div>

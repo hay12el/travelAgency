@@ -11,7 +11,6 @@ const NavBar = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.clear();
     dispatch(LOGOUT());
     navigate("/");
   };

@@ -12,6 +12,12 @@
     border-radius: 5px;
     background-color: rgba(239, 239, 239, 0.546);
   }
+
+  #btnP{
+    background-color: #5eb1fa;
+    color: black;
+  }
+
   
   .outercontainer {
     margin: 0px auto;

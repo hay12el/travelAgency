@@ -134,7 +134,7 @@ function AdminPannel() {
                   type="number"
                   name="price"
                   dir="ltr"
-                  id="price"
+                  id="price1"
                   onChange={handleCange}
                 />
                 <label>price</label>

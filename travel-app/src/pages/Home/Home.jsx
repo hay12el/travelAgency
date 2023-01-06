@@ -126,7 +126,11 @@ function Home() {
         for (let i = 0; i < toFlights.length; i++) {
           for (let j = 0; j < fromFlights.length; j++) {
             if (toFlights[i].price + fromFlights[j].price < details.maxPrice) {
-              x.push([toFlights[i], fromFlights[j]]);
+              if (
+                new Date(toFlights[i].date) <= new Date(fromFlights[j].date)
+              ) {
+                x.push([toFlights[i], fromFlights[j]]);
+              }
             }
           }
         }
@@ -137,6 +141,7 @@ function Home() {
   };
 
   const handleAllFlights = async () => {
+    setOneOrTwo(1);
     setResults([]);
     setFromFlights([]);
     setToFlights([]);
@@ -156,7 +161,9 @@ function Home() {
           <div className="gaf">
             <h3>press here to get all our flights</h3>
           </div>
-          <button className="btn" id="np" onClick={handleAllFlights}>Get All Flight</button>
+          <button className="btn" id="np" onClick={handleAllFlights}>
+            Get All Flight
+          </button>
         </div>
         <div id="search-form">
           <div id="header">
@@ -238,7 +245,13 @@ function Home() {
                     ) : (
                       <label>FROM:</label>
                     )}
-                    <input type="date" id="sTime" onChange={hundleChange} />
+                    <input
+                      className="form-control"
+                      type="date"
+                      id="sTime"
+                      onChange={hundleChange}
+                      min={new Date().toISOString().split("T")[0]}
+                    />
                   </div>
                   <div className="info-box" id="return-box">
                     {oneOrTwo === 0 ? (
@@ -246,8 +259,16 @@ function Home() {
                     ) : (
                       <label>TO:</label>
                     )}
-                    <input type="date" id="eTime" onChange={hundleChange} />
+
+                    <input
+                      className="form-control"
+                      type="date"
+                      id="eTime"
+                      onChange={hundleChange}
+                      min={new Date().toISOString().split("T")[0]}
+                    />
                   </div>
+
                   <div className="info-box">
                     <span className="sm">
                       <label htmlFor="range">max price</label>
