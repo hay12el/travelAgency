@@ -44,16 +44,33 @@ exports.updatePrice = async (req, res, next) => {
 
 exports.getFlights = async (req, res, next) => {
   try {
-    const { from, to, sTime, eTime, maxPrice } = req.query;
+    const { from, to, sTime, eTime, maxPrice, page, limit } = req.query;
+    const startIndex = (page - 1) * limit;
+    const endIndex = page * limit;
+    const results = {};
     const fromm = from.toLowerCase();
     const too = to.toLowerCase();
+
+    //get all flights that meet the restrictions
     const flights = await Flight.find({
       from: fromm,
       to: too,
       date: { $gte: sTime, $lte: eTime },
       price: { $lte: maxPrice },
-    });
-    res.status(200).send(flights);
+    })
+      .limit(limit)
+      .skip(startIndex).exec();
+
+    results.flights = flights;
+    results.privius = startIndex > 0 ? {page: page - 1, limit: limit} : null;
+    results.next = endIndex < await Flight.find({from: fromm, to: too, date: { $gte: sTime, $lte: eTime }, price: { $lte: maxPrice }}).length ? 
+    {
+      page: page + 1,
+      limit: limit
+    } 
+    : null;
+
+    res.status(200).send(results);
   } catch (err) {
     res.status(404).send({ msg: "some problem hapends" });
   }

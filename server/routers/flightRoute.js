@@ -7,8 +7,24 @@ const { route } = require("./userRoute");
 const router = Router();
 
 router.get('/', async (req, res) => {
-    const flights = await Flight.find();
-    res.send(flights);
+    const { page, limit } = req.query;
+    const startIndex = (page - 1) * limit;
+    const endIndex = page * limit;
+    const results = {};
+
+    const flights = await Flight.find()
+    .limit(limit)
+    .skip(startIndex).exec();
+
+    results.flights = flights;
+    results.privius = startIndex > 0 ? {page: parseInt(page) - 1, limit: limit} : null;
+    results.next = endIndex < await Flight.countDocuments().exec() ? 
+    {
+      page: parseInt(page) + 1,
+      limit: limit
+    } 
+    : null;
+    res.send(results);
 })
 
 router.get('/getFlights', flightCont.getFlights)
