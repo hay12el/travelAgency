@@ -32,7 +32,7 @@ function AdminPannel() {
         const flights = await axios.get(
           `http://localhost:${process.env.REACT_APP_URL}/flight/`
         );
-        setResults(flights.data);
+        setResults(flights.data.flights);
       };
 
       getData();
@@ -134,7 +134,7 @@ function AdminPannel() {
                   type="number"
                   name="price"
                   dir="ltr"
-                  id="price1"
+                  id="price"
                   onChange={handleCange}
                 />
                 <label>price</label>
