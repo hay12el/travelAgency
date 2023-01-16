@@ -2,7 +2,12 @@ const Flight = require("../model/flight");
 
 exports.addFlight = async (req, res, next) => {
   try {
-    const newFlight = new Flight(req.body);
+    const { numOfSeats } = req.body;
+    let s = [];
+    for (let i = 1; i <= numOfSeats; i++) {
+      s.push(i);
+    }
+    const newFlight = new Flight({ ...req.body, seats: s });
     await newFlight.save();
     res.send("ok");
   } catch (err) {
@@ -57,20 +62,27 @@ exports.getFlights = async (req, res, next) => {
       to: too,
       date: { $gte: sTime, $lte: eTime },
       price: { $lte: maxPrice },
+      seats: {$not: {$size: 0}}
     })
       .limit(limit)
-      .skip(startIndex).exec();
-
+      .skip(startIndex)
+      .exec();
     results.flights = flights;
-    results.privius = startIndex > 0 ? {page: page - 1, limit: limit} : null;
-    results.next = endIndex < await Flight.find({from: fromm, to: too, date: { $gte: sTime, $lte: eTime }, price: { $lte: maxPrice }}).length ? 
-    {
-      page: page + 1,
-      limit: limit
-    } 
-    : null;
-
-    res.status(200).send(results);
+    results.privius = startIndex > 0 ? { page: page - 1, limit: limit } : null;
+    results.next =
+      endIndex <
+      (await Flight.find({
+        from: fromm,
+        to: too,
+        date: { $gte: sTime, $lte: eTime },
+        price: { $lte: maxPrice },
+      }).length)
+        ? {
+            page: page + 1,
+            limit: limit,
+          }
+        : null;
+      flights.length !== 0 ? res.status(200).send(results) : res.status(404).send(results);
   } catch (err) {
     res.status(404).send({ msg: "some problem hapends" });
   }

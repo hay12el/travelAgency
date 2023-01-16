@@ -44,16 +44,6 @@ function AdminPannel() {
   };
 
   const handleSubmit = async () => {
-    await new Promise((resolve, reject) => {
-      let s = [];
-      for (let i = 1; i <= details.numOfSeats; i++) {
-        s.push(i);
-      }
-      setDetails((prev) => ({ ...prev, ["seats"]: s }));
-
-      resolve("done");
-    });
-
     const newFlight = await axios.post(
       `http://localhost:5000/flight/addFlight`,
       details

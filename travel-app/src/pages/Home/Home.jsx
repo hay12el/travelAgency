@@ -106,7 +106,7 @@ function Home() {
         const flights = await axios.get(
           `http://localhost:${process.env.REACT_APP_URL}/flight/${
             oneOrTwo === 1 ? "getFlights" : "getFlightsTwoWay"
-          }?page=1&limit=5`,
+          }`,
           {
             params: {
               from: details.from,
@@ -117,33 +117,34 @@ function Home() {
             },
           }
         );
-
-        if (oneOrTwo === 1) {
-          setResults(flights.data.flights);
-        } else {
-          setToFlights(flights.data.flights.to);
-          setFromFlights(flights.data.flights.back);
-          let x = [];
-          for (let i = 0; i < toFlights.length; i++) {
-            for (let j = 0; j < fromFlights.length; j++) {
-              if (
-                toFlights[i].price + fromFlights[j].price <
-                details.maxPrice
-              ) {
+        
+          if (oneOrTwo === 1) {
+            setResults(flights.data.flights);
+          } else {
+            setToFlights(flights.data.flights.to);
+            setFromFlights(flights.data.flights.back);
+            let x = [];
+            for (let i = 0; i < toFlights.length; i++) {
+              for (let j = 0; j < fromFlights.length; j++) {
                 if (
-                  new Date(toFlights[i].date) <= new Date(fromFlights[j].date)
+                  toFlights[i].price + fromFlights[j].price <
+                  details.maxPrice
                 ) {
-                  x.push([toFlights[i], fromFlights[j]]);
+                  if (
+                    new Date(toFlights[i].date) <= new Date(fromFlights[j].date)
+                  ) {
+                    x.push([toFlights[i], fromFlights[j]]);
+                  }
                 }
               }
             }
+            setResults(x);
           }
-          setResults(x);
-        }
-        setShow(false);
+          setShow(false);
+        
       } catch (err) {
-        console.log(err);
         setShow(false);
+        alert(`no flight from ${details.from} to ${details.to}`);
       }
     }
   };
@@ -155,9 +156,8 @@ function Home() {
     setToFlights([]);
     setShow(true);
     const flights = await axios.get(
-      `http://localhost:${process.env.REACT_APP_URL}/flight/?page=1&limit=5`
+      `http://localhost:${process.env.REACT_APP_URL}/flight/`
     );
-    console.log(flights.data);
     setResults(flights.data.flights);
     setShow(false);
   };

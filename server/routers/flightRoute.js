@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
     const endIndex = page * limit;
     const results = {};
 
-    const flights = await Flight.find()
+    const flights = await Flight.find({seats: {$not: {$size: 0}}})
     .limit(limit)
     .skip(startIndex).exec();
 

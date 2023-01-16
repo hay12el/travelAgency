@@ -9,6 +9,7 @@ function Airplane({ flight, setChoosenSeats, choosenSeats }) {
   const [totalSeats, setTotalSeats] = useState([]);
 
   useEffect(() => {
+    console.log(flight);
     setNumOfSeats(flight.numOfSeats);
     setSeats(flight.seats);
     if (totalSeats.length === 0) {
