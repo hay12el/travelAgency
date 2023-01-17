@@ -101,6 +101,7 @@ function Home() {
       details.maxPrice === null
     ) {
       alert("comlete all the parameters!");
+      setShow(false);
     } else {
       try {
         const flights = await axios.get(
@@ -158,6 +159,7 @@ function Home() {
     const flights = await axios.get(
       `http://localhost:${process.env.REACT_APP_URL}/flight/`
     );
+    console.log(flights);
     setResults(flights.data.flights);
     setShow(false);
   };

@@ -1,17 +1,19 @@
 import axios from "axios";
 import React from "react";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Loader from "../loader/Loader";
 import "./payment.css";
 
 function Payment(props) {
+  const user = useSelector(state => state.user)
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const [details, setDetails] = useState({
     CVC: null,
     CardNumber: null,
-    FullName: null,
+    FullName: user.userName,
     date: null,
     IDnum: null
   });
@@ -25,7 +27,7 @@ function Payment(props) {
     if (/^\d{3,4}$/.test(cvc) === false) {
       return false;
     }
-
+    
     // Check credit card number
     if (/^\d{16}$/.test(number) === false) {
       return false;
@@ -36,7 +38,7 @@ function Payment(props) {
     }
 
     // Check full name
-    if (/^[A-Z][a-z]+(\s[A-Z][a-z]+)+$/.test(name) === false) {
+    if (/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/.test(name) === false) {
       return false;
     }
 
@@ -143,6 +145,7 @@ function Payment(props) {
               <input
                 type="text"
                 id="FullName"
+                value={details.FullName}
                 onChange={handleChange}
                 // onKeyDown={handleClick}
               />
