@@ -17,13 +17,18 @@ router.get('/', async (req, res) => {
     .skip(startIndex).exec();
 
     results.flights = flights;
-    results.privius = startIndex > 0 ? {page: parseInt(page) - 1, limit: limit} : null;
-    results.next = endIndex < await Flight.countDocuments().exec() ? 
-    {
-      page: parseInt(page) + 1,
-      limit: limit
-    } 
-    : null;
+    const numOfNextSolutin = await Flight.find({seats: {$not: {$size: 0}}})
+    .skip(startIndex+5)
+    .count();
+    
+    results.privius = startIndex > 0 ? { page: page - 1, limit: limit } : null;
+    results.next =
+      numOfNextSolutin !== 0
+        ? {
+            page: numOfNextSolutin,
+            limit: limit,
+          }
+        : null;
     res.send(results);
 })
 

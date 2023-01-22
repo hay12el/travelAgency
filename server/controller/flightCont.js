@@ -68,17 +68,20 @@ exports.getFlights = async (req, res, next) => {
       .skip(startIndex)
       .exec();
     results.flights = flights;
+    
+    const numOfNextSolutin = await Flight.find({
+      from: fromm,
+      to: too,
+      date: { $gte: sTime, $lte: eTime },
+      price: { $lte: maxPrice },
+    }).skip(startIndex+5)
+    .count();
+    
     results.privius = startIndex > 0 ? { page: page - 1, limit: limit } : null;
     results.next =
-      endIndex <
-      (await Flight.find({
-        from: fromm,
-        to: too,
-        date: { $gte: sTime, $lte: eTime },
-        price: { $lte: maxPrice },
-      }).length)
+      numOfNextSolutin !== 0
         ? {
-            page: page + 1,
+            page: numOfNextSolutin,
             limit: limit,
           }
         : null;
@@ -104,7 +107,7 @@ exports.getFlightsTwoWay = async (req, res, next) => {
       date: { $gte: sTime, $lte: eTime },
     });
 
-    res.status(200).send({ to: flightsTo, back: flightsBack });
+    res.status(200).send({flights:{to: flightsTo, back: flightsBack} });
   } catch (err) {
     res.status(404).send({ msg: "some problem hapends" });
   }

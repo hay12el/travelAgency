@@ -43,8 +43,27 @@
     height: 40px;
     width: 60px;
     animation: flyAn 10s ease-in-out infinite;
-    transition: transform 150ms ease;
-    
+    transition: transform 150ms ease; 
+}
+
+.flightButton {
+    height: 20px;
+    width: 30px;
+    position:relative;
+    bottom: 0px;
+    left: -20px;
+    transform: rotate(-10deg);
+    animation-duration: 0.6s;
+    z-index: 0;
+}
+
+.btnWithFly > button:hover + .flightButton{
+    animation-name: flyB;
+    animation-timing-function:ease-in-out;
+}
+
+@keyframes flyB{
+    100%{transform: translate(70px, -40px) rotate(-30deg);}
 }
 
 @keyframes flyAn {
@@ -94,9 +113,17 @@
     border: 1px solid #0A7CAE;
     height: 35px;
     transition: 0.3s;
+    z-index: 3;
+}
+
+.btnWithFly{
+    width: 50px;
+    border-radius: 30px;
+    height: 35px;
+    overflow: hidden;
 }
 
 .btnF:hover {
-    background-color: white;
+    /* background-color: white; */
     color: #00A1D6;
 }

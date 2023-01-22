@@ -12,7 +12,7 @@ function FlightResult(props) {
   return (
     <div className="FContainer">
       <div className="main">
-        <div className="mainUp">{props.flight.date.split('T')[0]}</div>
+        <div className="mainUp">{props.flight.date.split("T")[0]}</div>
         <div className="mainDown">
           <div className="leftSide">
             <div className="right">
@@ -39,9 +39,12 @@ function FlightResult(props) {
       </div>
       <div className="priceAndBottun">
         <p>{props.flight.price}$</p>
-        <button className="btnF" onClick={hundleClick}>
-          fly!
-        </button>
+        <div className="btnWithFly">
+          <button className="btnF" onClick={hundleClick}>
+            fly!
+          </button>
+          <img src={airplane} alt="fly" className="flightButton" />
+        </div>
       </div>
     </div>
   );

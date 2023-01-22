@@ -12,7 +12,7 @@
 }
 
 .form-control {
-  background-color:#e2e0e0c6;
+  background-color: #e2e0e0c6;
   height: 20px;
   padding: 10px 25px;
   border: none;
@@ -20,35 +20,33 @@
   -webkit-box-shadow: 0px 0px 0px 2px transparent;
   box-shadow: 0px 0px 0px 2px transparent;
   -webkit-transition: 0.2s;
-  transition: 0.2s
-
+  transition: 0.2s;
 }
 
 .form-control::-webkit-input-placeholder {
-  color: rgba(214, 71, 71, 0.5)
+  color: rgba(214, 71, 71, 0.5);
 }
 
 .form-control:-ms-input-placeholder {
-  color: rgba(255, 255, 255, 0.5)
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .form-control::placeholder {
-  color: rgba(133, 37, 37, 0.5)
+  color: rgba(133, 37, 37, 0.5);
 }
 
 .form-control:focus {
   -webkit-box-shadow: 0px 0px 0px 2px #ff8846;
-  box-shadow: 0px 0px 0px 2px #ff8846
+  box-shadow: 0px 0px 0px 2px #ff8846;
 }
 
 input[type="date"].form-control {
-  padding-top: 16px
+  padding-top: 16px;
 }
 
 input[type="date"].form-control:invalid {
-  color: rgba(255, 255, 255, 0.5)
+  color: rgba(255, 255, 255, 0.5);
 }
-
 
 .GetAllFlight {
   display: flex;
@@ -78,7 +76,6 @@ input[type="date"].form-control:invalid {
   justify-content: center;
   background-color: #00a0d6cc;
   height: 50%;
-
 }
 
 .gaf > h3 {
@@ -88,7 +85,7 @@ input[type="date"].form-control:invalid {
 }
 
 .sortCont {
-  display:flex;
+  display: flex;
   position: sticky;
   top: 0;
   z-index: 1;
@@ -121,15 +118,14 @@ input[type="date"].form-control:invalid {
   height: 100%;
 }
 
-.info-box > .lBtn{
-  background-color:#e2e0e0c6;
+.info-box > .lBtn {
+  background-color: #e2e0e0c6;
   height: 40px;
   padding: 10px 25px;
   border: none;
   border-radius: 40px;
-} */
-
-#header {
+}
+*/ #header {
   height: 80px;
   background: #deeef5a8;
   display: flex;
@@ -326,4 +322,16 @@ table td {
   background-color: rgb(205, 231, 252);
   color: #0695c5;
   border: 1px solid rgb(165, 231, 252);
+}
+
+.currentPage {
+  width: 35px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: #f0fbff;
+  box-shadow: inset -8px -8px 25px #e6f1f5,
+              inset 8px 8px 25px #faffff;
 }

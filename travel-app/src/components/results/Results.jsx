@@ -6,6 +6,7 @@ import DoubleFlight from "../doubleFlight/DoubleFlight";
 
 function Results(props) {
   const [ch, setCh] = useState(props.c)
+  
   return (
     <div className="ResultsContainer">
       {props.oneOrTwo === 1
@@ -17,6 +18,7 @@ function Results(props) {
               <DoubleFlight key={flight[0]._id+flight[1]._id} flight={flight}/>
             </div>
           ))}
+          
     </div>
   );
 }

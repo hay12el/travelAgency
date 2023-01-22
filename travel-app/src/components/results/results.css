@@ -16,3 +16,86 @@
     margin-top: 40px;
     /* border: 1px solid #DEEEF5; */
 }
+
+.arrows{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.arrow {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #00a1d6;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 14px;
+    padding:  5px 16px;
+    width: 70px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+   }
+   
+   .arrow span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+   }
+   
+   #right span:after {
+    content: '»';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -15px;
+    transition: 0.5s;
+   }
+   
+   #right:hover span:after {
+    opacity: 1;
+    right: 0;
+   }
+   
+   #right:hover span {
+    padding-right: 10px;
+   }
+   
+   #left span::before {
+       content: '«';
+       position: absolute;
+       opacity: 0;
+       top: 0;
+       left: -25px;
+       transition: 0.5s;
+    }
+    
+    #left:hover span {
+        padding-left: 10px;
+    }
+    
+    #left:hover span::before {
+        opacity: 1;
+        left: 0px;
+    }
+    
+    #left:hover span {
+     padding-left: 10px;
+    }
+    .arrow:disabled {
+    cursor: not-allowed;
+    background-color: #a9e9fe;
+   }
+
+   .arrow:disabled span {
+    cursor: not-allowed;
+    display: inline-block;
+    position: relative;
+   }
+   
+   
